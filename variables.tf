@@ -10,7 +10,7 @@ variable "namespace" {
   default     = "kube-system"
 }
 
-variable "version" {
+variable "chart_version" {
   description = "The version of the ingress-nginx Helm chart."
   type        = string
   default     = "4.11.2"
