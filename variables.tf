@@ -15,3 +15,28 @@ variable "version" {
   type        = string
   default     = "4.11.2"
 }
+#
+# Contextual Fields
+#
+
+variable "context" {
+  description = <<-EOF
+Receive contextual information. When Walrus deploys, Walrus will inject specific contextual information into this field.
+
+Examples:
+```
+context:
+  project:
+    name: string
+    id: string
+  environment:
+    name: string
+    id: string
+  resource:
+    name: string
+    id: string
+```
+EOF
+  type        = map(any)
+  default     = {}
+}
