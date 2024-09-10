@@ -30,14 +30,6 @@ components:
           x-walrus-ui:
             group: Basic
             order: 3
-        version:
-          title: Version
-          type: string
-          description: The version of the ingress-nginx Helm chart.
-          default: 4.11.2
-          x-walrus-ui:
-            group: Basic
-            order: 3
       x-walrus-ui:
         groupOrder:
         - Basic
