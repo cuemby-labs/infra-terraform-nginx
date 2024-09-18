@@ -1,10 +1,14 @@
+#
+# Ingress NGINX Variables
+#
+
 variable "release_name" {
   description = "The name of the Helm release."
   type        = string
   default     = "ingress-nginx"
 }
 
-variable "namespace" {
+variable "namespace_name" {
   description = "The namespace where the Helm release will be installed."
   type        = string
   default     = "kube-system"
@@ -15,6 +19,7 @@ variable "chart_version" {
   type        = string
   default     = "4.11.2"
 }
+
 #
 # Contextual Fields
 #

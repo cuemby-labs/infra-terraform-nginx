@@ -1,6 +1,10 @@
-resource "helm_release" "this" {
+#
+# Ingress NGINX Resources
+#
+
+resource "helm_release" "ingress_nginx" {
   name       = var.release_name
-  namespace  = var.namespace
+  namespace  = var.namespace_name
 
   repository = "https://kubernetes.github.io/ingress-nginx"
   chart      = "ingress-nginx"
@@ -8,12 +12,11 @@ resource "helm_release" "this" {
 
   values     = [file("${path.module}/values.yaml")]
 }
+
+#
+# Walrus Information
+#
+
 locals {
   context = var.context
-}
-
-module "submodule" {
-  source = "./modules/submodule"
-
-  message = "Hello, submodule"
 }

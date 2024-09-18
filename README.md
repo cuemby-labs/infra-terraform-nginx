@@ -1,11 +1,17 @@
 # Awesome Walrus Template
 
-Start here to create an awesome Walrus template.
+Terraform module which deploys Ingress NGINX on any kubernetes cluster.
 
 ## Usage
 
 ```hcl
+module "ingress_nginx" {
+  source              = "./modules/ingress_nginx" # Path to the Ingress NGINX module
 
+  release_name        = var.release_name          # The name of the Helm release.
+  namespace_name      = var.namespace_name        # The namespace where Ingress NGINX will be installed.
+  chart_version       = var.chart_version         # The version of the Ingress NGINX Helm chart to be used.
+}
 ```
 
 ## Examples
@@ -22,33 +28,40 @@ Please read our [contributing guide](./docs/CONTRIBUTING.md) if you're intereste
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
+| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | >= 2.23.0 |
+| <a name="requirement_helm"></a> [helm](#requirement\_helm) | >= 2.11.0 |
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_terraform"></a> [terraform](#provider\_terraform) | >= 1.5.7 |
+| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | >= 2.23.0 |
+| <a name="provider_helm"></a> [helm](#provider\_helm) | >= 2.11.0 |
 
 ## Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_submodule"></a> [submodule](#module\_submodule) | ./modules/submodule | n/a |
+No modules.
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [helm_release.example](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_context"></a> [context](#input\_context) | Receive contextual information. When Walrus deploys, Walrus will inject specific contextual information into this field.<br><br>Examples:<pre>context:<br>  project:<br>    name: string<br>    id: string<br>  environment:<br>    name: string<br>    id: string<br>  resource:<br>    name: string<br>    id: string</pre> | `map(any)` | `{}` | no |
+| <a name="input_namespace_name"></a> [namespace_name](#input_namespace_name) | Namespace where Ingress NGINX will be installed. | string | "kube-system" | no |
+| <a name="input_helm_release_name"></a> [helm_release_name](#input_helm_release_name) | Name for the Ingress NGINX Helm release. | string | "ingress-nginx" | no |
+| <a name="input_helm_chart_version"></a> [helm_chart_version](#input_helm_chart_version) | Version of the Ingress NGINX Helm chart. | string | "4.11.2" | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_submodule"></a> [submodule](#output\_submodule) | The message from submodule. |
 | <a name="output_walrus_environment_id"></a> [walrus\_environment\_id](#output\_walrus\_environment\_id) | The id of environment where deployed in Walrus. |
 | <a name="output_walrus_environment_name"></a> [walrus\_environment\_name](#output\_walrus\_environment\_name) | The name of environment where deployed in Walrus. |
 | <a name="output_walrus_project_id"></a> [walrus\_project\_id](#output\_walrus\_project\_id) | The id of project where deployed in Walrus. |
